@@ -1,7 +1,13 @@
 <!-- 创建场景 -->
 <xr-scene>
   <!-- 添加一个物体 -->
-  <xr-mesh node-id="cube" geometry="cube" />
+  <!-- material:没指定材质时 基于PBR 默认材质 需要光照 才可以不是黑色 -->
+  <!-- <xr-mesh node-id="cube" geometry="cube" /> -->
+
+  <!-- 指定simple材质 -->
+  <xr-asset-material asset-id="simple" effect="simple" uniforms="u_baseColorFactor:0.8 0.4 0.4 1" />
+  <xr-mesh node-id="cube" geometry="cube" material="simple" />
+
   <!-- camera-orbit-control：对相机控制 -->
   <xr-camera clear-color="0.4 0.8 0.6 1" position="0 1 4" target="cube" camera-orbit-control />
 </xr-scene>
