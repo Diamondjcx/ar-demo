@@ -1,28 +1,22 @@
 <!-- 创建场景 -->
 <xr-scene>
-  <!-- 添加一个物体 -->
-  <!-- material:没指定材质时 基于PBR 默认材质 需要光照 才可以不是黑色 -->
-  <!-- <xr-mesh node-id="cube" geometry="cube" /> -->
+  <!-- 三：纯色有点寡淡 物体上加入纹理 使其色彩丰富一些 -->
+  <!-- 资源加载器xr-asset-load和xr-assets -->
+  <xr-assets bind:progress="handleAssetsProgress" bind:loaded="handleAssetsLoaded">
+    <xr-asset-load type="texture" asset-id="waifu" src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/waifu.png" />
+  </xr-assets>
 
-  <!-- 解决黑色物体 -->
-  <!-- 1.指定simple材质 -->
-  <!-- <xr-asset-material asset-id="simple" effect="simple" uniforms="u_baseColorFactor:0.8 0.4 0.4 1" />
-  <xr-mesh node-id="cube" geometry="cube" material="simple" /> -->
-
-  <!-- 2.默认材质 增加灯光 -->
 
   <!-- 环境光 -->
   <xr-light type="ambient" color="1 1 1" intensity="1" />
   <!-- 主平行光 -->
   <xr-light type="directional" rotation="40 70 0" color="1 1 1" intensity="3" cast-shadow />
 
-  <!-- 立方体物体 -->
   <xr-mesh
     node-id="cube" cast-shadow
-    geometry="cube" uniforms="u_baseColorFactor:0.8 0.4 0.4 1"
+    geometry="cube" uniforms="u_baseColorMap: waifu"
   />
 
-  <!-- 下面加入了新的物体 开启阴影 -->
   <xr-mesh
     position="0 -1 0" scale="4 1 4" receive-shadow
     geometry="plane" uniforms="u_baseColorFactor:0.4 0.6 0.8 1"
@@ -30,4 +24,5 @@
 
   <!-- camera-orbit-control：对相机控制 -->
   <xr-camera clear-color="0.4 0.8 0.6 1" position="0 1 4" target="cube" camera-orbit-control />
+
 </xr-scene>
