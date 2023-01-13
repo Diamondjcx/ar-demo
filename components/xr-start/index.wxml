@@ -7,14 +7,23 @@
   </xr-assets>
 
 
+  <!-- 场景更丰富   物体有纹理  背景也加上纹理 -->
+  <xr-env env-data="xr-frame-team-workspace-day" />
+
   <!-- 环境光 -->
   <xr-light type="ambient" color="1 1 1" intensity="1" />
   <!-- 主平行光 -->
   <xr-light type="directional" rotation="40 70 0" color="1 1 1" intensity="3" cast-shadow />
 
-  <xr-mesh
+  <!-- <xr-mesh
     node-id="cube" cast-shadow
     geometry="cube" uniforms="u_baseColorMap: waifu"
+  /> -->
+
+  <!-- 调整立方体的金属粗糙度 -->
+  <xr-mesh
+    node-id="cube" cast-shadow
+    geometry="cube" uniforms="u_baseColorMap: waifu,u_metallicRoughnessValues:1 0.1"
   />
 
   <xr-mesh
@@ -23,6 +32,11 @@
   />
 
   <!-- camera-orbit-control：对相机控制 -->
-  <xr-camera clear-color="0.4 0.8 0.6 1" position="0 1 4" target="cube" camera-orbit-control />
+  <!-- <xr-camera clear-color="0.4 0.8 0.6 1" position="0 1 4" target="cube" camera-orbit-control /> -->
+
+  <xr-camera
+    position="0 1 4" target="cube" background="skybox"
+    clear-color="0.4 0.8 0.6 1" camera-orbit-control
+  />
 
 </xr-scene>
