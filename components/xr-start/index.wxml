@@ -4,14 +4,19 @@
   <!-- 资源加载器xr-asset-load和xr-assets -->
   <xr-assets bind:progress="handleAssetsProgress" bind:loaded="handleAssetsLoaded">
     <xr-asset-load type="texture" asset-id="waifu" src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/waifu.png" />
-    <xr-asset-load type="video-texture" asset-id="office" src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/videos/office-skybox.mp4" options="autoPlay:true,loop:true" />
+    <!-- <xr-asset-load type="video-texture" asset-id="office" src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/videos/office-skybox.mp4" options="autoPlay:true,loop:true" /> -->
+    <xr-asset-load type="texture" asset-id="weakme" src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/weakme.jpg" />
   </xr-assets>
 
 
   <!-- 场景更丰富   物体有纹理  背景也加上纹理 -->
   <!-- <xr-env env-data="xr-frame-team-workspace-day" /> -->
 
-  <xr-env env-data="xr-frame-team-workspace-day" sky-map="video-office" />
+  <!-- <xr-env env-data="xr-frame-team-workspace-day" sky-map="video-office" /> -->
+
+  <!-- 2D背景 -->
+  <xr-env env-data="xr-frame-team-workspace-day" sky-map="weakme" is-sky2d />
+
 
   <!-- 环境光 -->
   <xr-light type="ambient" color="1 1 1" intensity="1" />
