@@ -4,47 +4,33 @@
   <!-- 资源加载器xr-asset-load和xr-assets -->
   <xr-assets bind:progress="handleAssetsProgress" bind:loaded="handleAssetsLoaded">
     <xr-asset-load type="texture" asset-id="waifu" src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/waifu.png" />
-    <!-- <xr-asset-load type="video-texture" asset-id="office" src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/videos/office-skybox.mp4" options="autoPlay:true,loop:true" /> -->
     <xr-asset-load type="texture" asset-id="weakme" src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/weakme.jpg" />
+    <!-- 加载动画 -->
+    <xr-asset-load asset-id="anim" type="keyframe" src="/assets/animation.json"/>
   </xr-assets>
-
-
-  <!-- 场景更丰富   物体有纹理  背景也加上纹理 -->
-  <!-- <xr-env env-data="xr-frame-team-workspace-day" /> -->
-
-  <!-- <xr-env env-data="xr-frame-team-workspace-day" sky-map="video-office" /> -->
 
   <!-- 2D背景 -->
   <xr-env env-data="xr-frame-team-workspace-day" sky-map="weakme" is-sky2d />
-
 
   <!-- 环境光 -->
   <xr-light type="ambient" color="1 1 1" intensity="1" />
   <!-- 主平行光 -->
   <xr-light type="directional" rotation="40 70 0" color="1 1 1" intensity="3" cast-shadow />
 
-  <!-- <xr-mesh
-    node-id="cube" cast-shadow
-    geometry="cube" uniforms="u_baseColorMap: waifu"
-  /> -->
-
-  <!-- 调整立方体的金属粗糙度 -->
-  <xr-mesh
-    node-id="cube" cast-shadow
-    geometry="cube" uniforms="u_baseColorMap: waifu,u_metallicRoughnessValues:1 0.1"
-  />
 
   <xr-mesh
-    position="0 -1 0" scale="4 1 4" receive-shadow
-    geometry="plane" uniforms="u_baseColorFactor:0.4 0.6 0.8 1"
+  node-id="cube" cast-shadow anim-keyframe="anim" anim-autoplay="clip:cube,speed:2"
+  geometry="cube" uniforms="u_baseColorMap: waifu,u_metallicRoughnessValues:1 0.1"
   />
-
-  <!-- camera-orbit-control：对相机控制 -->
-  <!-- <xr-camera clear-color="0.4 0.8 0.6 1" position="0 1 4" target="cube" camera-orbit-control /> -->
+  <xr-mesh
+    node-id="plane" position="0 -1 0" scale="4 1 4" receive-shadow anim-keyframe="anim" anim-autoplay="clip:plane"
+    geometry="plane" uniforms="u_baseColorMap: waifu"
+  />
 
   <xr-camera
-    position="0 1 4" target="cube" background="skybox"
+    position="0 1 6" target="plane" background="skybox"
     clear-color="0.4 0.8 0.6 1" camera-orbit-control
   />
+
 
 </xr-scene>
